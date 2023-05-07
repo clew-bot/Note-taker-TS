@@ -19,6 +19,18 @@ export function NoteForm() {
             </Form.Group>
           </Col>
         </Row>
+        <Form.Group controlId="markdown">
+              <Form.Label>Body</Form.Label>
+              <Form.Control type="text" placeholder="Description" required as="textarea" rows={15} />
+            </Form.Group>
+            <Stack direction="horizontal" gap={2}>
+                <button type="submit" className="btn btn-primary">
+                    Save
+                </button>
+                <button type="button" className="btn btn-secondary">
+                    Cancel
+                </button>
+                </Stack>
       </Stack>
     </Form>
   );
