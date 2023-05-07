@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { FormEvent, useRef, useState } from "react";
 import { NoteData, Tag } from "./App";
 import { v4 as uuidV4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 
 type NoteFormProps = {
@@ -16,16 +17,17 @@ export function NoteForm({ onSubmit, onAddTag, availableTags }: NoteFormProps) {
     const titleRef = useRef<HTMLInputElement>(null)
     const markdownRef = useRef<HTMLTextAreaElement>(null)
     const [ selectedTags, setSelectedTags ] = useState<Tag[]>([])
+    const navigate = useNavigate();
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
         onSubmit({
             title: titleRef.current!.value,
             markdown: markdownRef.current!.value,
-            tags: []
+            tags: selectedTags
     }
-
     )
+    navigate("..");
 }
 
 
@@ -50,8 +52,6 @@ export function NoteForm({ onSubmit, onAddTag, availableTags }: NoteFormProps) {
               }}
               value={selectedTags.map(tag => {
                 return { label: tag.label, value: tag.id}
-
-
               })} 
               options={availableTags.map(tag => {
                 return { label: tag.label, value: tag.id}
