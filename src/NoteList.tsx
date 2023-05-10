@@ -10,6 +10,7 @@ type NoteListProps = {
 
 export function NoteList({ availableTags}: NoteListProps) {
     const [ selectedTags, setSelectedTags ] = useState<Tag[]>([])
+    const [ title, setTitle ] = useState("")
     return <>
     <Row>
         <Col><h1>Notes</h1></Col>
@@ -27,7 +28,7 @@ export function NoteList({ availableTags}: NoteListProps) {
         <Col>
         <Form.Group controlId="search"> 
         <Form.Label>Title</Form.Label> 
-        <Form.Control type="text" placeholder="Search by title" />
+        <Form.Control type="text" placeholder="Search by title" value={title} onChange={e => setTitle(e.target.value)}/>
         </Form.Group>
         </Col>
         <Col>
